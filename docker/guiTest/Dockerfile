@@ -8,7 +8,7 @@
 FROM nvidia/cuda:11.0-base
 
 RUN apt-get update && apt-get install -y firefox xauth xterm glmark2
-CMD ["xterm"]
+CMD ["glmark2"]
 
 # nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES \

@@ -19,10 +19,12 @@ ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRAR
 RUN apt-get update && apt-get install -y xauth xterm glmark2
 RUN apt-get upgrade -y
 
-CMD ["xterm"]
+#DEBUG TOols
+RUN apt install -y cmake-curses-gui
+
 
 ##Blender Dependencies
-RUN apt install -y build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libglew-dev libjpeg-dev libpng-dev libzstd-dev libfreetype-dev python3-dev libembree-dev libjack-dev libpulse-dev libfftw3-dev openimageio-tools libavformat-dev curl python3.9 python3.9-dev libswscale-dev libavdevice-dev
+RUN apt install -y build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libglew-dev libjpeg-dev libpng-dev libzstd-dev libfreetype-dev python3-dev libembree-dev libjack-dev libpulse-dev libfftw3-dev libopenimageio-dev libavformat-dev curl python3.9 python3.9-dev libswscale-dev libavdevice-dev
 
 #Install Python dependencies
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -32,15 +34,12 @@ RUN pip3.9 install numpy
 ##Install blender
 RUN mkdir software; cd software \
 	&& git clone https://git.blender.org/blender.git; cd blender \
+	&& git checkout blender-v2.93-release \
 	&& git submodule update --init --recursive \
-        && mkdir build; cd build
-	&& cmake .. -DWITH_PYTHON_INSTALL=OFF -DWITH_PYTHON_MODULE=ON -DWITH_INSTALL_PORTABLE=ON -DWITH_CYCLES_EMBREE=OFF -DWITH_MEM_JEMALLOC=OFF \
-
-#	&& mkdir lib; cd lib; svn checkout https://svn.blender.org/svnroot/bf-blender/tags/blender-2.82-release/lib/linux_centos7_x86_64; cd .. \
-#	&& mkdir build; cd build \
-#	&& cmake .. -DWITH_PYTHON_INSTALL=OFF -DWITH_PYTHON_MODULE=ON -DWITH_INSTALL_PORTABLE=ON -DWITH_CYCLES_EMBREE=OFF -DWITH_MEM_JEMALLOC=OFF \
-#	&& make -j8 \
-#	&& make install
+        && mkdir build; cd build \
+        && cmake .. -DWITH_PYTHON_INSTALL=OFF -DWITH_PYTHON_MODULE=ON -DWITH_INSTALL_PORTABLE=OFF -DWITH_CYCLES_EMBREE=OFF -DWITH_MEM_JEMALLOC=OFF -DWITH_XR_OPENXR=OFF -DWITH_BOOST=OFF -DWITH_QUADRIFLOW=OFF -DWITH_AUDASPACE=OFF -DWITH_SDL=OFF -DWITH_CODEC_SNDFILE=OFF -DWITH_FFTW3=OFF -DWITH_HARU=OFF -DWITH_JACK=OFF -DWITH_MOD_FLUID=OFF -DWITH_MOD_OCEANSIM=OFF -DWITH_TBB=OFF -DWITH_PYTHON_MODULE=OFF \ 
+	&& make -j8 \
+	&& make install
 
 
 

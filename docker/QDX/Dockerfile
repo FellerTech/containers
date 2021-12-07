@@ -16,7 +16,7 @@ ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRAR
 
 
 #Container validation dependencies
-RUN apt-get update && apt-get install -y xauth lxterminal glmark2 vim-gui-common 
+RUN apt-get update && apt-get install -y xauth xterm glmark2 vim-gui-common tilda
 RUN apt-get upgrade -y
 
 #DEBUG TOols
@@ -45,6 +45,8 @@ RUN mkdir software; cd software \
 
 
 #QSIM Dependencies
-#RUN apt install -y cmake-curses-gui cmake
+RUN apt install -y nvidia-cuda-toolkit libgcc-8 g++-8 gcc-8 libsqlite3-dev
 
-CMD ["lxterminal"]
+
+
+CMD ["xterm"]

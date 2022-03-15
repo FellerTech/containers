@@ -8,7 +8,8 @@ services:
       - DISPLAY=${DISPLAY}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - /home/sfeller/develop:/var/tmp/develop
+      - /mnt/data:/mnt/data
+      - /home/sfeller/develop:/root/develop
     network_mode: host
     deploy:
       resources:

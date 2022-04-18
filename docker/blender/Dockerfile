@@ -34,7 +34,7 @@ RUN pip3.9 install numpy
 ##Install blender
 RUN mkdir software; cd software \
 	&& git clone https://git.blender.org/blender.git; cd blender \
-	&& git checkout blender-v2.93-release \
+	&& git checkout blender-v3.0-release \
 	&& git submodule update --init --recursive \
         && mkdir build; cd build \
         && cmake .. -DWITH_PYTHON_INSTALL=OFF -DWITH_PYTHON_MODULE=OFF -DWITH_INSTALL_PORTABLE=OFF -DWITH_CYCLES_EMBREE=OFF -DWITH_MEM_JEMALLOC=OFF -DWITH_XR_OPENXR=OFF -DWITH_BOOST=OFF -DWITH_QUADRIFLOW=OFF -DWITH_AUDASPACE=OFF -DWITH_SDL=OFF -DWITH_CODEC_SNDFILE=OFF -DWITH_FFTW3=OFF -DWITH_HARU=OFF -DWITH_JACK=OFF -DWITH_MOD_FLUID=OFF -DWITH_MOD_OCEANSIM=OFF -DWITH_TBB=OFF \
@@ -44,8 +44,6 @@ RUN mkdir software; cd software \
 	&& make -j8 \
 	&& make install \ 
 	&& cp bin/bpy.so /usr/lib/python3.9/
-
-
 
 
 #QSIM Dependencies

@@ -14,9 +14,10 @@ git clone git@github.com:FellerTech/containers.git
 ## Go to the appropriate repository
 cd docker/blender
 
-## Modify the docker-compose.yml file to mount any volumes needed for persistent data. Each volume entry specifies the data location on the server followed by a ':'. The second entry is where the data will reside in the docker container. An example of docker-compose.yml file is shown below. In this case, the /mnt/data directory on the server is mounted to the same place in the docker container. The /home/sfeller/develop directory is mounted at /root/develop. Any changes to the container are transient unless they are in a mounted volume.
+## Change default settings
+Modify the docker-compose.yml file to mount any volumes needed for persistent data. Each volume entry specifies the data location on the server followed by a ':'. The second entry is where the data will reside in the docker container. An example of docker-compose.yml file is shown below. In this case, the /mnt/data directory on the server is mounted to the same place in the docker container. The /home/sfeller/develop directory is mounted at /root/develop. Any changes to the container are transient unless they are in a mounted volume.
 
-`
+```
 version: "3"
 
 services:
@@ -40,7 +41,7 @@ services:
 networks:
   default:
     external: true
-`
+```
 
 
 ## Build docker

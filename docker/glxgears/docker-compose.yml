@@ -1,8 +1,22 @@
 version: "3"
 services:
-  glxgears:
+  app:
+    image: nvidia/opengl:1.0-glvnd-runtime
     build: .
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/data:/mnt/data
+      - /home/sfeller/develop:/root/develop
+    network_mode: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+            count: all
+    volumes:
+            - /home/sfeller/develop:/var/tmp/develop
+

@@ -11,7 +11,7 @@ echo "$DISTRIB $RELEASE"
 
 
 if [ "$DISTRIB" == "Ubuntu" ]; then
-   if [ "$RELEASE" == "20.04" ]; then
+   if [ "$RELEASE" == "23.04" ]; then
    	echo "Installing container dependencies for $DISTRIB $RELEASE"
    	sudo apt update
    	sudo apt install -y ca-certificates curl gnupg lsb-release

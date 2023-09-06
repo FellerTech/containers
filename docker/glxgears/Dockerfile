@@ -9,10 +9,17 @@ FROM nvidia/opengl:1.1-glvnd-runtime
 
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
 
+#sdf original
 #RUN apt-get update && apt-get install -y --no-install-recommends \
 #        mesa-utils && \
 #    rm -rf /var/lib/apt/lists/*
 
-CMD ["xterm"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        mesa-utils &&\
+    rm -rf /var/lib/apt/lists/*
+
+#CMD ["gnome-terminal"]
+#CMD ["xterm"]
+CMD /usr/bin/xterm
 #CMD ["glxgears", "-info"]
 

@@ -16,6 +16,9 @@ services:
           - driver: nvidia
             capabilities: [gpu]
             count: all
+    volumes: 
+            - /home/sfeller/develop:/var/tmp/develop
+
 networks:
   default:
     external: true

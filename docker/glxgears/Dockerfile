@@ -5,7 +5,7 @@
 # xhost +si:localuser:root
 # docker run --runtime=nvidia -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix glxgears
 
-FROM nvidia/opengl:1.1-glvnd-runtime
+FROM nvidia/opengl:1.2-glvnd-runtime
 #FROM nvidia/opengl:1.0-glvnd-runtime
 
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
@@ -20,5 +20,5 @@ RUN apt-get update && apt-get install -y mesa-utils xterm
 #CMD ["gnome-terminal"]
 #CMD ["xterm"]
 CMD xterm
-#CMD ["glxgears", "-info"]
+CMD ["glxgears", "-info"]
 

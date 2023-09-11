@@ -32,5 +32,6 @@ RUN apt-get install -y meson git libgtest-dev
 #CMD ["gnome-terminal"]
 #CMD ["xterm"]
 USER ${USER}
+RUN ln -s /root/develop /home/$USER
 CMD ["lxterminal", "--working-directory=/home/$USER"]
 

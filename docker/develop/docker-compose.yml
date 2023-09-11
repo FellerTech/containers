@@ -20,5 +20,6 @@ services:
             capabilities: [gpu]
             count: all
     volumes:
-            - /home/sfeller/develop:/root/develop
+      - /home/sfeller/develop:/home/sfeller/develop
+      #      - ${HOME}/develop:/$USER/develop
 

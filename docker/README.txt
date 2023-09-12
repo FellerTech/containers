@@ -26,3 +26,6 @@ docker pull nvidia/opengl:1.2-glvnd-runtime
 
 #This container has been tested on the following systems:
 - Ubuntu 23.04 with a nVidia GTX 1080 graphics card 
+
+#Command Execution from host system command line
+docker exec -it -u root  develop sh -c "apt install doxygen"

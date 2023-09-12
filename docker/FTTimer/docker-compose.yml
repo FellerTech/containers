@@ -1,0 +1,26 @@
+version: "3"
+services:
+  app:
+    image: nvidia/opengl:1.0-glvnd-runtime
+    build: .
+    container_name: FTTimer
+    environment:
+      - DISPLAY=${DISPLAY}  
+      - USER="${USER}"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+        #      - /mnt/data:/mnt/data
+      - /home/sfeller/develop:/home/sfeller/develop
+        #      - /home/sfeller/develop:/root/develop
+    network_mode: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+            count: all
+              #    volumes:
+      #      - /home/sfeller/develop:/home/sfeller/develop
+      #      - ${HOME}/develop:/$USER/develop
+

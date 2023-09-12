@@ -1,20 +1,25 @@
-#FROM ubuntu:20.04
-#FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu20.04
-#FROM nvidia/cudagl:11.4.0-devel-ubuntu20.04 
-#FROM docker:20.10
-#FROM nvidia/opengl:1.0-glvnd-runtime 
-#FROM nvcr.io/nvidia/cudagl:11.4.0-devel-ubuntu20.04
-#FROM nvidia/cudagl:11.4.0-devel-ubuntu20.04
-#FROM nvidia/cuda:11.0-base
 FROM mongo
 
-#CMD ["xterm"]
+#User variables
+ENV UID="1000"
+ENV GID="1500"
+ENV USER="sfeller"
 
-RUN apt-get update && apt-get install -y xterm vim
-#RUN useradd -ms /bin/bash xterm
-#USER xterm
-#WORKDIR /home/xterm
-CMD xterm
+#ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
+
+
+#Create user and groups
+RUN groupadd -g $GID devs
+RUN useradd --create-home --no-log-init -u $UID -g $GID -s /bin/bash $USER
+
+
+RUN apt-get update && apt-get install -y lxterminal vim python3-dev 
+
+USER ${USER}
+#RUN ln -s /root/develop /home/$USER
+RUN mkdir /home/$USER/build
+CMD ["lxterminal", "--working-directory=/home/$USER"]
+
 
 #RUN apt-get update && apt-get install -y firefox xauth xterm glmark2
 #CMD ["glmark2"]

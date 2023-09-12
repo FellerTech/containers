@@ -20,6 +20,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
 
 RUN groupadd -g $GID devs 
 RUN useradd --create-home --no-log-init -u $UID -g $GID -s /bin/bash $USER
+
 RUN apt-get update && apt-get install -y mesa-utils lxterminal vim
 
 

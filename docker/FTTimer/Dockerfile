@@ -34,9 +34,10 @@ RUN apt-get install -y build-essential cmake
 #meson libraries
 RUN apt-get install -y meson git libgtest-dev
 
-#CMD ["gnome-terminal"]
-#CMD ["xterm"]
 USER ${USER}
-#RUN ln -s /root/develop /home/$USER
+
+#Create build directory and setup meson
+RUN mkdir /home/$USER/build
+
 CMD ["lxterminal", "--working-directory=/home/$USER"]
 
